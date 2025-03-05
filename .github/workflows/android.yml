@@ -37,10 +37,13 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        tag_name: ${{ github.sha }}
+        tag_name: Release ${{ github.sha }}
         release_name: Release ${{ github.sha }}
         draft: false
         prerelease: false
+        
+    - name: List APK files
+      run: ls -alh app/build/outputs/apk/release
 
     - name: Upload APK to Release
       uses: actions/upload-release-asset@v1
