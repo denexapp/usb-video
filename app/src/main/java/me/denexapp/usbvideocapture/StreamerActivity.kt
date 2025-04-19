@@ -16,9 +16,11 @@
 package me.denexapp.usbvideocapture
 
 import android.os.Bundle
+import android.view.WindowInsetsController
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -31,6 +33,8 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 private const val TAG = "StreamerActivity"
+
+private const val NON_IMMERSIVE_SCREEN = 0
 
 enum class StreamerScreen {
   Status,
@@ -52,6 +56,7 @@ class StreamerActivity : ComponentActivity() {
 
   private fun doOnCreate() {
     enableEdgeToEdge()
+    window.insetsController?.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
     streamerViewModel.prepareCameraPermissionLaunchers(this)
     streamerViewModel.prepareUsbBroadcastReceivers(this)
     setContentView(R.layout.activity_streamer)
@@ -60,6 +65,12 @@ class StreamerActivity : ComponentActivity() {
     viewPager.setPageTransformer(ZoomOutPageTransformer())
     val screensAdapter = StreamerScreensAdapter(this, streamerViewModel)
     viewPager.adapter = screensAdapter
+    viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+      override fun onPageSelected(position: Int) {
+        super.onPageSelected(position)
+        updateImmersiveMode()
+      }
+    })
     lifecycleScope.launch {
       repeatOnLifecycle(Lifecycle.State.STARTED) {
         streamerViewModel.restartStreaming()
@@ -101,6 +112,11 @@ class StreamerActivity : ComponentActivity() {
     }
   }
 
+  override fun onResume() {
+    super.onResume()
+    updateImmersiveMode()
+  }
+
   private fun stopStreaming(screensAdapter: StreamerScreensAdapter) {
     val screensCount = screensAdapter.screens.size
     if (screensCount > 1) {
@@ -108,5 +124,21 @@ class StreamerActivity : ComponentActivity() {
       screensAdapter.notifyItemRangeRemoved(1, screensCount - 1)
       viewPager.setCurrentItem(0, true)
     }
+  }
+
+  private fun updateImmersiveMode() {
+    if (viewPager.currentItem != NON_IMMERSIVE_SCREEN) {
+      enableImmersiveMode()
+    } else {
+      disableImmersiveMode()
+    }
+  }
+
+  private fun enableImmersiveMode() {
+    window.insetsController?.hide(WindowInsetsCompat.Type.systemBars())
+  }
+
+  private fun disableImmersiveMode() {
+    window.insetsController?.show(WindowInsetsCompat.Type.systemBars())
   }
 }
