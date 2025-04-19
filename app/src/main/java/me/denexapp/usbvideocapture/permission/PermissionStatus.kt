@@ -13,20 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
-  repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()
-  }
-}
-dependencyResolutionManagement {
-  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-  repositories {
-    google()
-    mavenCentral()
-  }
-}
+package me.denexapp.usbvideocapture.permission
 
-rootProject.name = "USB Video Capture"
-include(":app")
+sealed class PermissionStatus
+
+object PermissionRequired : PermissionStatus()
+
+object PermissionGranted : PermissionStatus()
+
+object PermissionDenied : PermissionStatus()

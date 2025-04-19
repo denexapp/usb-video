@@ -24,7 +24,7 @@ limitations under the License.
     android:clickable="true"
     tools:ignore="KeyboardInaccessibleWidget,MissingClass,StellaXmlColorUsageDetector"
     >
-  <com.meta.usbvideo.ui.VideoContainerView
+  <me.denexapp.usbvideocapture.ui.VideoContainerView
       android:id="@+id/video_container"
       android:layout_width="match_parent"
       android:layout_height="match_parent"

@@ -16,8 +16,8 @@ limitations under the License.
 -->
 <resources>
   <!-- Note: this file is not included in i18n. Use strings.xml for your translatable strings. -->
-  <string name="app_name" translatable="false">USB Video</string>
-  <string name="app_description" translatable="false">Big screen gaming and entertainment</string>
+  <string name="app_name" translatable="false">USB Video Capture </string>
+  <string name="app_description" translatable="false">USB Video Capture</string>
   <string name="app_requirements" translatable="false">A USB capture card and HDMI/DisplayPort source is required.</string>
   <string name="app_permissions_explanation" translatable="false">❓Camera and Record Audio permissions are required to operate USB capture card.</string>
   <string name="app_permissions_granted" translatable="false">✔ App permissions granted</string>

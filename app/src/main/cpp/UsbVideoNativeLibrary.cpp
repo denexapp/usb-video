@@ -54,7 +54,7 @@ JNIEXPORT void JNICALL JNI_OnUnload(JavaVM* jvm, void* reserved) {
 }
 
 JNIEXPORT jint JNICALL
-Java_com_meta_usbvideo_UsbVideoNativeLibrary_getUsbDeviceSpeed(JNIEnv* env, jobject self) {
+Java_me_denexapp_usbvideocapture_UsbVideoNativeLibrary_getUsbDeviceSpeed(JNIEnv* env, jobject self) {
   if (streamer_ != nullptr) {
     return streamer_->getUsbDeviceSpeed();
   }
@@ -62,7 +62,7 @@ Java_com_meta_usbvideo_UsbVideoNativeLibrary_getUsbDeviceSpeed(JNIEnv* env, jobj
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_meta_usbvideo_UsbVideoNativeLibrary_connectUsbVideoStreamingNative(
+Java_me_denexapp_usbvideocapture_UsbVideoNativeLibrary_connectUsbVideoStreamingNative(
     JNIEnv* env,
     jobject tis,
     jint deviceFd,
@@ -72,7 +72,7 @@ Java_com_meta_usbvideo_UsbVideoNativeLibrary_connectUsbVideoStreamingNative(
     jint libuvcFrameFormat,
     jobject jSurface) {
   CLOGE(
-      " Java_com_meta_usbvideo_UsbVideoNativeLibrary__connectUsbVideoStreamingNative called with deviceFd %d",
+      " Java_me_denexapp_usbvideocapture_UsbVideoNativeLibrary__connectUsbVideoStreamingNative called with deviceFd %d",
       deviceFd);
   if (uvcStreamer_ == nullptr) {
     uvcStreamer_ = std::make_unique<UsbVideoStreamer>(
@@ -85,7 +85,7 @@ Java_com_meta_usbvideo_UsbVideoNativeLibrary_connectUsbVideoStreamingNative(
 
 
 JNIEXPORT jboolean JNICALL
-Java_com_meta_usbvideo_UsbVideoNativeLibrary_startUsbVideoStreamingNative(
+Java_me_denexapp_usbvideocapture_UsbVideoNativeLibrary_startUsbVideoStreamingNative(
         JNIEnv* env,
         jobject self) {
   if (uvcStreamer_ != nullptr) {
@@ -94,7 +94,7 @@ Java_com_meta_usbvideo_UsbVideoNativeLibrary_startUsbVideoStreamingNative(
   return false;
 }
 
-JNIEXPORT void JNICALL Java_com_meta_usbvideo_UsbVideoNativeLibrary_stopUsbVideoStreamingNative(
+JNIEXPORT void JNICALL Java_me_denexapp_usbvideocapture_UsbVideoNativeLibrary_stopUsbVideoStreamingNative(
     JNIEnv* env,
     jobject self) {
   if (uvcStreamer_ != nullptr) {
@@ -102,14 +102,14 @@ JNIEXPORT void JNICALL Java_com_meta_usbvideo_UsbVideoNativeLibrary_stopUsbVideo
   }
 }
 
-JNIEXPORT void JNICALL Java_com_meta_usbvideo_UsbVideoNativeLibrary_disconnectUsbVideoStreamingNative(
+JNIEXPORT void JNICALL Java_me_denexapp_usbvideocapture_UsbVideoNativeLibrary_disconnectUsbVideoStreamingNative(
         JNIEnv* env,
         jobject self) {
   uvcStreamer_ = nullptr;
   previewWindow_.reset(nullptr);
 }
 
-JNIEXPORT jstring JNICALL Java_com_meta_usbvideo_UsbVideoNativeLibrary_streamingStatsSummaryString(
+JNIEXPORT jstring JNICALL Java_me_denexapp_usbvideocapture_UsbVideoNativeLibrary_streamingStatsSummaryString(
     JNIEnv* env,
     jobject self) {
   std::string result = "";
@@ -124,7 +124,7 @@ JNIEXPORT jstring JNICALL Java_com_meta_usbvideo_UsbVideoNativeLibrary_streaming
 }
 
 JNIEXPORT jboolean JNICALL
-Java_com_meta_usbvideo_UsbVideoNativeLibrary_connectUsbAudioStreamingNative(
+Java_me_denexapp_usbvideocapture_UsbVideoNativeLibrary_connectUsbAudioStreamingNative(
     JNIEnv* env,
     jobject tis,
     jint deviceFd,
@@ -150,14 +150,14 @@ Java_com_meta_usbvideo_UsbVideoNativeLibrary_connectUsbAudioStreamingNative(
 }
 
 
-JNIEXPORT void JNICALL Java_com_meta_usbvideo_UsbVideoNativeLibrary_disconnectUsbAudioStreamingNative(
+JNIEXPORT void JNICALL Java_me_denexapp_usbvideocapture_UsbVideoNativeLibrary_disconnectUsbAudioStreamingNative(
         JNIEnv* env,
         jobject self) {
   if (streamer_ != nullptr) {
     streamer_ = nullptr;
   }
 }
-JNIEXPORT void JNICALL Java_com_meta_usbvideo_UsbVideoNativeLibrary_startUsbAudioStreamingNative(
+JNIEXPORT void JNICALL Java_me_denexapp_usbvideocapture_UsbVideoNativeLibrary_startUsbAudioStreamingNative(
         JNIEnv* env,
         jobject self) {
   if (streamer_ != nullptr) {
@@ -165,7 +165,7 @@ JNIEXPORT void JNICALL Java_com_meta_usbvideo_UsbVideoNativeLibrary_startUsbAudi
   }
 }
 
-JNIEXPORT void JNICALL Java_com_meta_usbvideo_UsbVideoNativeLibrary_stopUsbAudioStreamingNative(
+JNIEXPORT void JNICALL Java_me_denexapp_usbvideocapture_UsbVideoNativeLibrary_stopUsbAudioStreamingNative(
     JNIEnv* env,
     jobject self) {
   if (streamer_ != nullptr) {

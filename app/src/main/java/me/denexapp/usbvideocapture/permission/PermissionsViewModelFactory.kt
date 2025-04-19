@@ -13,20 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
-  repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()
-  }
-}
-dependencyResolutionManagement {
-  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-  repositories {
-    google()
-    mavenCentral()
-  }
-}
+package me.denexapp.usbvideocapture.permission
 
-rootProject.name = "USB Video Capture"
-include(":app")
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.CreationExtras
+
+class PermissionsViewModelFactory(
+    private val cameraPermission: CameraPermissionState,
+    private val recordAudioPermission: RecordAudioPermissionState,
+) : ViewModelProvider.Factory {
+  @Suppress("UNCHECKED_CAST", "KotlinGenericsCast")
+  override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
+    return PermissionsViewModel(
+        cameraPermission,
+        recordAudioPermission,
+    )
+        as T
+  }
+}

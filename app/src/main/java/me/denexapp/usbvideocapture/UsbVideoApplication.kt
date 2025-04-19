@@ -13,20 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-pluginManagement {
-  repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()
-  }
-}
-dependencyResolutionManagement {
-  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-  repositories {
-    google()
-    mavenCentral()
-  }
-}
+package me.denexapp.usbvideocapture
 
-rootProject.name = "USB Video Capture"
-include(":app")
+import android.app.Application
+import me.denexapp.usbvideocapture.usb.UsbMonitor
+
+class UsbVideoApplication : Application() {
+
+  override fun onCreate() {
+    super.onCreate()
+    UsbMonitor.init(this)
+    System.loadLibrary("usbvideo")
+  }
+}

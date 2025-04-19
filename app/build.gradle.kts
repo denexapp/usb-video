@@ -19,11 +19,11 @@ plugins {
 }
 
 android {
-  namespace = "com.meta.usbvideo"
+  namespace = "me.denexapp.usbvideocapture"
   compileSdk = 34
 
   defaultConfig {
-    applicationId = "com.meta.usbvideo"
+    applicationId = "me.denexapp.usbvideocapture"
     minSdk = 30
     targetSdk = 34
     versionCode = 1
