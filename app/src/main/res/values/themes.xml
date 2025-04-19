@@ -20,11 +20,4 @@ limitations under the License.
   <style name="Theme.UsbVideo" parent="Theme.AppCompat.DayNight.NoActionBar">
   </style>
 
-  <!-- Full screen theme. -->
-  <style name="Theme.UsbVideo.Fullscreen">
-    <item name="windowActionBar">false</item>
-    <item name="windowNoTitle">true</item>
-    <item name="android:windowFullscreen">true</item>
-  </style>
-
 </resources>

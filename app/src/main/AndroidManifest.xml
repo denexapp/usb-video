@@ -21,7 +21,7 @@ limitations under the License.
 
   <uses-sdk
       android:minSdkVersion="30"
-      android:targetSdkVersion="34"
+      android:targetSdkVersion="35"
       />
 
   <uses-permission android:name="android.permission.RECORD_AUDIO"/>
@@ -43,7 +43,6 @@ limitations under the License.
     <activity
         android:name=".StreamerActivity"
         android:exported="true"
-        android:theme="@style/Theme.UsbVideo.Fullscreen"
         android:configChanges="orientation|screenLayout|screenSize|density|layoutDirection|smallestScreenSize|touchscreen|navigation|uiMode"
         android:launchMode="singleTask"
         android:screenOrientation="landscape"

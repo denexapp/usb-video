@@ -17,6 +17,7 @@ package me.denexapp.usbvideocapture
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -50,6 +51,7 @@ class StreamerActivity : ComponentActivity() {
   }
 
   private fun doOnCreate() {
+    enableEdgeToEdge()
     streamerViewModel.prepareCameraPermissionLaunchers(this)
     streamerViewModel.prepareUsbBroadcastReceivers(this)
     setContentView(R.layout.activity_streamer)
