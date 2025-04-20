@@ -45,14 +45,14 @@ class VideoContainerView(context: Context, attrs: AttributeSet) : FrameLayout(co
       videoView.pivotY = height.toFloat() / 2f
       val scaleX = abs(right - left).toFloat() / width
       val scaleY = abs(bottom - top).toFloat() / height
-      if (abs(scaleX - 1.0) > 0.0001) {
-        videoView.scaleX = scaleX
+      // I changed it to keep the aspect ratio here
+      // Might need to move this logic above
+      val scale = minOf(scaleX, scaleY)
+      if (abs(scale - 1.0) > 0.0001) {
+        videoView.scaleX = scale
+        videoView.scaleY = scale
       } else {
         videoView.scaleX = 1.0f
-      }
-      if (abs(scaleY - 1.0) > 0.0001) {
-        videoView.scaleY = scaleY
-      } else {
         videoView.scaleY = 1.0f
       }
     }
