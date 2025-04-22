@@ -23,6 +23,6 @@ class UsbVideoApplication : Application() {
   override fun onCreate() {
     super.onCreate()
     UsbMonitor.init(this)
-    System.loadLibrary("usbvideo")
+    System.loadLibrary("usbvideocapture")
   }
 }

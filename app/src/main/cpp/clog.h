@@ -19,10 +19,10 @@
 
 #include <android/log.h>
 
-#define CLOGD(...) __android_log_print(ANDROID_LOG_DEBUG, "UsbVideo", __VA_ARGS__)
-#define CLOGI(...) __android_log_print(ANDROID_LOG_INFO, "UsbVideo", __VA_ARGS__)
+#define CLOGD(...) __android_log_print(ANDROID_LOG_DEBUG, "UsbVideoCapture", __VA_ARGS__)
+#define CLOGI(...) __android_log_print(ANDROID_LOG_INFO, "UsbVideoCapture", __VA_ARGS__)
 
-#define CLOGE(...) __android_log_print(ANDROID_LOG_ERROR, "UsbVideo", __VA_ARGS__)
-#define CLOGW(...) __android_log_print(ANDROID_LOG_WARN, "UsbVideo", __VA_ARGS__)
+#define CLOGE(...) __android_log_print(ANDROID_LOG_ERROR, "UsbVideoCapture", __VA_ARGS__)
+#define CLOGW(...) __android_log_print(ANDROID_LOG_WARN, "UsbVideoCapture", __VA_ARGS__)
 
 #endif // USB_VIDEO_CLOG_H
