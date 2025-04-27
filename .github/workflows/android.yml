@@ -33,26 +33,11 @@ jobs:
     - name: Decode keystore and create jks
       run: echo '${{ secrets.KEYSTORE_JKS_BASE64 }}' | base64 --decode > 'app/keystore.jks'
 
-    - name: View keystore.properties
-      run: |
-        echo "Displaying keystore.properties content for debugging:"
-        cat keystore.properties
-
-    - name: Validate Keystore
-      run: |
-        keytool -list -keystore app/keystore.jks \
-          -storepass '${{ secrets.KEYSTORE_STORE_PASSWORD }}' \
-          -keypass '${{ secrets.KEYSTORE_KEY_PASSWORD }}' \
-          -alias '${{ secrets.KEYSTORE_KEY_ALIAS }}'
-
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
   
     - name: Build with Gradle
       run: ./gradlew assembleRelease
-
-    - name: List APK files
-      run: ls -alh app/build/outputs/apk/release
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
