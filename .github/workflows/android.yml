@@ -27,11 +27,11 @@ jobs:
         storePassword=${{ secrets.KEYSTORE_STORE_PASSWORD }}
         keyPassword=${{ secrets.KEYSTORE_KEY_PASSWORD }}
         keyAlias=${{ secrets.KEYSTORE_KEY_ALIAS }}
-        storeFile=${{ vars.KEYSTORE_STORE_FILE_PATH }}
+        storeFile=keystore.jks
         EOF
 
     - name: Decode keystore and create jks
-      run: echo "${{ secrets.KEYSTORE_JKS_BASE64 }}" | base64 --decode > "${{ vars.KEYSTORE_STORE_FILE_PATH }}"
+      run: echo "${{ secrets.KEYSTORE_JKS_BASE64 }}" | base64 --decode > "app/keystore.jks"
 
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
