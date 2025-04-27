@@ -30,6 +30,11 @@ jobs:
         storeFile:${{ vars.KEYSTORE_STORE_FILE_PATH }}
         EOF
 
+    - name: Debug Variables
+      run: |
+        echo "KEYSTORE_STORE_FILE_PATH: ${{ vars.KEYSTORE_STORE_FILE_PATH }}"
+        echo "Secrets Loaded: ${{ secrets.KEYSTORE_STORE_PASSWORD }}"
+
     - name: Decode keystore and create jks
       run: echo "${{ secrets.KEYSTORE_JKS_BASE64 }}" | base64 --decode > "${{ vars.KEYSTORE_STORE_FILE_PATH }}"
 
