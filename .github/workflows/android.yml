@@ -21,17 +21,32 @@ jobs:
         distribution: 'temurin'
         cache: gradle
 
+    - name: Generate keystore.properties
+      run: |
+        cat <<EOF > keystore.properties
+        storePassword:${{ secrets.KEYSTORE_STORE_PASSWORD }}
+        keyPassword:${{ secrets.KEYSTORE_KEY_PASSWORD }}
+        keyAlias:${{ secrets.KEYSTORE_KEY_ALIAS }}
+        storeFile:${{ vars.KEYSTORE_STORE_FILE_PATH }}
+        EOF
+
+    - name: Decode keystore and create jks
+      run: echo "${{ secrets.KEYSTORE_JKS_BASE64 }}" | base64 --decode > "${{ vars.KEYSTORE_STORE_FILE_PATH }}"
+
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
+  
     - name: Build with Gradle
       run: ./gradlew assembleRelease
+
     - name: List APK files
       run: ls -alh app/build/outputs/apk/release
+
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: app-release-unsigned.apk
-        path: app/build/outputs/apk/release/app-release-unsigned.apk
+        path: app/build/outputs/apk/release/app-release.apk
 
     - name: Create Release
       id: create_release
@@ -50,6 +65,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: app/build/outputs/apk/release/app-release-unsigned.apk
-        asset_name: app-release-unsigned.apk
+        asset_path: app/build/outputs/apk/release/app-release.apk
+        asset_name: app-release.apk
         asset_content_type: application/vnd.android.package-archive
