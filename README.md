@@ -1,7 +1,7 @@
-USB Video
+USB Video Capture
 ================
 
-USB Video is an open source Android project that provides video and audio streaming library and sample apps on Android and Meta Quest devices from gaming consoles, phones, and other HDMI out sources using a USB Video Class (UVC) compatible USB Video Capture Card accessory.
+USB Video Capture is an open source Android project that provides video and audio streaming library and sample apps on Android and Meta Quest devices from gaming consoles, phones, and other HDMI out sources using a USB Video Class (UVC) compatible USB Video Capture Card accessory.
 
 Features
 --------
@@ -14,7 +14,7 @@ Features
 Getting Started
 ---------------
 
-To get started with USB Video, follow these steps:
+To get started with USB Video Capture, follow these steps:
 
 1. Clone the repository:
 ```bash
@@ -35,9 +35,5 @@ studio .
 ```
 5. A USB video capture card is required. Use USB 3.0 (SuperSpeed) card and cables. The app has been tested on Quest 2 and Quest 3. 
 
-Contributing
-------------
-See the [CONTRIBUTING](CONTRIBUTING.md) file for how to help out.
-
 ## License
-usb-video is [Apache 2.0 licensed](LICENSE).
+USB Video Capture is [Apache 2.0 licensed](LICENSE).
